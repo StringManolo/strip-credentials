@@ -36,7 +36,9 @@ stripc
 
 4 - Open the files to make sure the credentials are removed.
 
-5 - Add Commit and Push and Recover the files running
+5 - Add Commit and Push
+
+6 - Recover the files to keep developing and remove withCredentials folder (you can omite delete function if you don't care about the folder being there)
 ```
 stripc r d
 ```
