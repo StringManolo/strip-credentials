@@ -160,7 +160,7 @@ if (process.argv[2]) {
 const fileContents = loadFile("./sc.config");
 if (fileContents) {
   createFolder("./withCredentials");
-  createFileOverwrite("./withCredentials/.gitignore", "../withCredentials");
+  createFileOverwrite("./withCredentials/.gitignore", "*\n*/\n!.gitignore");
   let listOfFiles: string | string[] = fileContents;
   if (/\n/g.test(listOfFiles)) {
     listOfFiles = listOfFiles.split("\n");
