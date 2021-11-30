@@ -72,6 +72,7 @@ const replaceByPlaceholders = (filename) => {
         password: "12345678"
     };
     let fileContent = loadFile(filename);
+    console.log(fileContent === null || fileContent === void 0 ? void 0 : fileContent.length);
     if (!fileContent) {
         return null;
     }

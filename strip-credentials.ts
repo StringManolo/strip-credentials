@@ -87,6 +87,7 @@ const replaceByPlaceholders = (filename: string) => {
   };
 
   let fileContent = loadFile(filename);
+  console.log(fileContent?.length);
   if (!fileContent) {
     return null;
   }

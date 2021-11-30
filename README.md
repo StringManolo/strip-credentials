@@ -6,15 +6,15 @@ Remove the credentials from your files before upload your projects to avoid leak
 #### commands
 | command | description |
 | ------- | ----------- |
-| stripc  | Read the files from "./sc.config". search the credentials after the comentaries and replace them by placeholders |
-| stripc --init | Generate a void "./sc.config" file. Only usefull to create the file if you don't remember the file's name |
-| stripc recover | Recover the original files from "./withCredentials" folder that mimics original file structure |
-| stripc recover delete | Also removed the "./withCredentials" folder
+| npx stripc  | Read the files from "./sc.config". search the credentials after the comentaries and replace them by placeholders |
+| npx stripc --init | Generate a void "./sc.config" file. Only usefull to create the file if you don't remember the file's name |
+| npx stripc recover | Recover the original files from "./withCredentials" folder that mimics original file structure |
+| npx stripc recover delete | Also removed the "./withCredentials" folder
 
 
-### Downlaod
+### Download
 ```
-npm install strip-credentials
+npm install strip-credentials -g
 ```
 
 ### How to use
@@ -36,7 +36,7 @@ cpp/server.cpp
 
 3 - Run the command
 ```
-stripc
+npx stripc
 ```
 
 4 - Open the files to make sure the credentials are removed.
@@ -45,6 +45,6 @@ stripc
 
 6 - Recover the files to keep developing and remove withCredentials folder (you can omite delete function if you don't care about the folder being there)
 ```
-stripc r d
+npx stripc r d
 ```
 

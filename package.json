@@ -5,9 +5,12 @@
   },
   "name": "strip-credentials",
   "description": "Strip Credentials from files",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "strip-credentials.js",
   "devDependencies": {},
+  "bin": {
+    "stripc": "./bin/stripc"
+  },
   "scripts": {
     "compile": "tsc && cp strip-credentials.js ./bin/stripc && chmod +775 ./bin/stripc",
     "start": "node ./bin/stripc",
