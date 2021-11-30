@@ -9,6 +9,8 @@
   "main": "strip-credentials.js",
   "devDependencies": {},
   "scripts": {
+    "compile": "tsc && mv strip-credentials.js stripc && chmod +775 stripc",
+    "start": "node ./stripc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

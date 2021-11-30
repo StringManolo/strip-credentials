@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import fs from "fs";
 import exec from "child_process";
 
@@ -29,7 +31,7 @@ const open = (filename: string, mode: string) => {
     fd.close = () => fs.closeSync(fd.internalFd);
     return fd;
   } catch(err) {
-    console.log("open " + err);
+    // console.log("open " + err);
     return fd;
   }
 }
@@ -41,10 +43,12 @@ const createFile = (filename: string, data: string) => {
       const fd = open(filename, "w");
       fd.puts(data);
       fd.close();
+      return true;
     }
   } catch(err) {
     //console.log("createFile " + err);
   }
+  return false;
 }
 
 
@@ -90,32 +94,33 @@ const replaceByPlaceholders = (filename: string) => {
 
   const originalContent = fileContent;
 
+  let emailsCounter = 0;
+  let passwordsCounter = 0;
+
   if(/\/\*.REPLACE.[EMAIL|PASSWORD]/g.test(fileContent)) {
     const coments = fileContent.match(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm);
     if (Array.isArray(coments)) {
       for (let i in coments) {
         if (/REPLACE EMAIL BETWEEN /g.test(coments[i])) {
           const [firstChar, secondChar] = coments[i].split(" ")[4].split("");
-	  console.log("The EMAIL is between " + firstChar + secondChar);
 	  const email: string = fileContent.split(coments[i])[1]
 	    .split(firstChar)[1]
 	    .split(secondChar)[0];
-	  console.log("The EMAIL is " + email);
+	  // console.log("The EMAIL is " + email);
 	  fileContent = fileContent.replace(`${coments[i]}${firstChar}${email}${secondChar}`, `${firstChar}${placeholder.email}${secondChar}`);
+          ++emailsCounter;
 	} else if (/REPLACE PASSWORD BETWEEN /g.test(coments[i])) {
           const [firstChar, secondChar] = coments[i].split(" ")[4].split("");
-	  console.log("The PASSWORD is between " + firstChar + secondChar);
 	  const password: string = fileContent.split(coments[i])[1]
 	    .split(firstChar)[1]
 	    .split(secondChar)[0];
-	  console.log("The PASSWORD is " + password);
+	  // console.log("The PASSWORD is " + password);
 	  fileContent = fileContent.replace(`${coments[i]}${firstChar}${password}${secondChar}`, `${firstChar}${placeholder.password}${secondChar}`);
-
+          ++passwordsCounter;
 	}
       }
     }
 
-    console.log("Replacing " + filename);
   } else {
     return false;;
   }
@@ -129,18 +134,36 @@ const replaceByPlaceholders = (filename: string) => {
     createFileOverwrite("./withCredentials/" + filename, originalContent);
   }
   createFileOverwrite(filename, fileContent);
+  console.log(emailsCounter + " emails and " + passwordsCounter + " passwords replaced from " + filename + "\n");
+
   return true;
 }
 
 
 /* <main> */
 if (process.argv[2]) {
+  if (process.argv[2] === "--init" || process.argv[2] === "init") {
+    try {
+      if (!createFile("./sc.config", "")) {
+        console.log("sc.config file already exists. Place each file you want to track into new line"); 
+	process.exit(0);
+      }
+      
+      console.log("Done");
+    } catch (error) {
+      console.log("sc.config file already exists. Place each file you want to track in a separated line");
+    }
+    process.exit(0);
+  }
+
+
   if (/r/gi.test(process.argv[2])) {
     try {
       run("mv ./.gitignore ./_.gitignore~ 2>&1 > /dev/null; cp ./withCredentials/* ./ -r 2>&1 > /dev/null; rm ./.gitignore 2>&1 > /dev/null; mv ./_.gitignore~ ./.gitignore 2>&1 > /dev/null");
     } catch (error) {
 
     }
+    console.log("Files recovered");
   }
 
   if (process.argv[3]) {
@@ -150,6 +173,7 @@ if (process.argv[2]) {
       } catch (error) {
 
       }
+      console.log("\"./withCredentials\" folder removed");
     }
   }
   process.exit(0);
