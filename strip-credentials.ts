@@ -77,6 +77,9 @@ const run = (args: string): string => {
 
 
 const replaceByPlaceholders = (filename: string) => {
+  if (!filename || filename === "" || filename === "\n") {
+    return false;
+  }
   console.log("Checking " + filename + " ... ");
 
   const placeholder = {

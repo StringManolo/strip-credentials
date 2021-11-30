@@ -66,6 +66,9 @@ const run = (args) => {
     return res;
 };
 const replaceByPlaceholders = (filename) => {
+    if (!filename || filename === "" || filename === "\n") {
+        return false;
+    }
     console.log("Checking " + filename + " ... ");
     const placeholder = {
         email: "example@gmail.com",
