@@ -12,6 +12,11 @@ Remove the credentials from your files before upload your projects to avoid leak
 | stripc recover delete | Also removed the "./withCredentials" folder
 
 
+### Downlaod
+```
+npm install strip-credentials
+```
+
 ### How to use
 1 - Add a commentary just right before the credentials as shown
 ```
