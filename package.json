@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "@types/node": "^16.11.10",
+    "typescript": "^4.5.2"
+  },
+  "name": "strip-credentials",
+  "description": "Strip Credentials from files",
+  "version": "1.0.0",
+  "main": "strip-credentials.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StringManolo/strip-credentials.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StringManolo/strip-credentials/issues"
+  },
+  "homepage": "https://github.com/StringManolo/strip-credentials#readme"
+}
