@@ -4,6 +4,6 @@ If you are going to develop a similar software for 100% secure automated workflo
 
 THIS PROGRAM HAS 100% BUGS 
 
-Also even if it was 100% secure (it's not), you still have to care when you should run the program. Mostly beacuse compilers, builders, engines, etc, can create new file from the files you have with credentials. If this is the case, you will only remoce the credentials from the source files, not the generated ones.
+Also even if it was 100% secure (it's not), you still have to care when you should run the program. Mostly beacuse compilers, builders, engines, etc, can create new file from the files you have with credentials. If this is the case, you will only remove the credentials from the source files, not the generated ones.
 
 
