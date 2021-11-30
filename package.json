@@ -5,14 +5,14 @@
   },
   "name": "strip-credentials",
   "description": "Strip Credentials from files",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "main": "strip-credentials.js",
   "devDependencies": {},
   "bin": {
     "stripc": "./bin/stripc"
   },
   "scripts": {
-    "compile": "tsc && cp strip-credentials.js ./bin/stripc && chmod +775 ./bin/stripc",
+    "compile": "tsc && mv strip-credentials.js ./bin/stripc && printf '%s\n%s\n' \"#!/usr/bin/env node\" \"$(cat ./bin/stripc)\" > ./bin/stripc && chmod +775 ./bin/stripc",
     "start": "node ./bin/stripc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
