@@ -1,1 +1,1 @@
-./bin/* linguist-detectable=false
+bin/stripc linguist-detectable=false
