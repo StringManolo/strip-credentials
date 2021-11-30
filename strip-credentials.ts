@@ -26,7 +26,7 @@ const open = (filename: string, mode: string) => {
   const fd: FileDescriptor = {} as any;
   try {
     fd.internalFd = fs.openSync(filename, mode)
-    fd.read = (buffer, position, len) => fs.readSync(fd.internalFd, buffer, position, +len + 1, null);
+    fd.read = (buffer, position, len) => fs.readSync(fd.internalFd, buffer, position, len, null);
     fd.puts = (str) => fs.writeSync(fd.internalFd, str);
     fd.close = () => fs.closeSync(fd.internalFd);
     return fd;

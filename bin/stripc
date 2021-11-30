@@ -20,7 +20,7 @@ const open = (filename, mode) => {
     const fd = {};
     try {
         fd.internalFd = fs_1.default.openSync(filename, mode);
-        fd.read = (buffer, position, len) => fs_1.default.readSync(fd.internalFd, buffer, position, +len + 1, null);
+        fd.read = (buffer, position, len) => fs_1.default.readSync(fd.internalFd, buffer, position, len, null);
         fd.puts = (str) => fs_1.default.writeSync(fd.internalFd, str);
         fd.close = () => fs_1.default.closeSync(fd.internalFd);
         return fd;

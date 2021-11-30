@@ -5,7 +5,7 @@
   },
   "name": "strip-credentials",
   "description": "Strip Credentials from files",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "main": "strip-credentials.js",
   "devDependencies": {},
   "bin": {
