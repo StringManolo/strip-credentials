@@ -1,1 +1,2 @@
-bin/* linguist-detectable=false
+./bin/ linguist-detectable=false
+./*.js linguist-detectable=false
