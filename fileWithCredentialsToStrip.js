@@ -10,4 +10,4 @@ send({
   text: 'gmail-send example 1',
 }, (error, result, fullResult) => {
   if (error) console.error(error);
-  console.lo
+  conso

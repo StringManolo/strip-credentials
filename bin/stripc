@@ -14,13 +14,13 @@ const loadFile = (filename) => {
     catch (e) {
         retValue = null;
     }
-    return (retValue ? retValue.slice(0, -1) : null);
+    return retValue;
 };
 const open = (filename, mode) => {
     const fd = {};
     try {
         fd.internalFd = fs_1.default.openSync(filename, mode);
-        fd.read = (buffer, position, len) => fs_1.default.readSync(fd.internalFd, buffer, position, len, null);
+        fd.read = (buffer, position, len) => fs_1.default.readSync(fd.internalFd, buffer, position, +len + 1, null);
         fd.puts = (str) => fs_1.default.writeSync(fd.internalFd, str);
         fd.close = () => fs_1.default.closeSync(fd.internalFd);
         return fd;
@@ -72,7 +72,6 @@ const replaceByPlaceholders = (filename) => {
         password: "12345678"
     };
     let fileContent = loadFile(filename);
-    console.log(fileContent === null || fileContent === void 0 ? void 0 : fileContent.length);
     if (!fileContent) {
         return null;
     }
@@ -106,7 +105,6 @@ const replaceByPlaceholders = (filename) => {
     }
     else {
         return false;
-        ;
     }
     try {
         createFileOverwrite("./withCredentials/" + filename, originalContent);
